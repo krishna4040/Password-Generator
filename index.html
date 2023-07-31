@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta id="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <title>Password Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@200&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/2bfe2706bb.js" crossorigin="anonymous"></script>
+    <style>
+        *{
+            font-family: 'Leauge-Spartan' , sans-serif;
+        }
+        :root{
+            --dk-violet: hsl(268,75%,9%);
+            --lt-violet: hsl(268,47%,21%);
+            --lt-violet2: hsl(281,89%,26%);
+            --vb-violet: hsl(285,91%,52%);
+            --vb-violet2: hsl(290,70%,36%);
+            --vb-yellow: hsl(52,100%,62%);
+            --pl-white: hsl(0,0%,100%);
+            --vb-cyan: hsl(176,100%,44%);
+            --vb-cyan2: hsl(177,92%,70%);
+            --dk-text: hsl(198,20%,13%);
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            appearance: none;
+            height: 2rem;
+            width: 2rem;
+            border-radius: 50%;
+            background-color: var(--vb-yellow);
+            cursor: pointer;
+            margin-top: -3px;
+            box-sizing: 0 0 20px rgba(255,229,61,0.50);
+            transition: all 100ms ease-in;
+        }
+        input[type="range"]::-webkit-slider-thumb:hover{
+            outline: 2px solid var(--vb-yellow);
+            background-color: var(--dk-violet);
+            box-shadow: 0px 0px 25px 5px rgba(255,229,61,0.80);
+        }
+        .active{
+            opacity: 1;
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body class="w-full h-screen flex flex-col justify-center items-center bg-gradient-to-t from-[rgba(22,6,40,1)] via-[rgba(52,28,79,1)] to-[rgba(88,7,125,1)] bg-no-repeat">
+
+    <div id="conatainer" class="w-[90%] max-w-[450px]">
+
+        <div id="heading" class="text-[var(--pl-white)] uppercase text-center opacity-80 leading-5">
+
+            <h1>PassWord generator</h1>
+
+        </div>
+
+        <div id="outputDiv" class="relative bg-[var(--dk-violet)] rounded-2xl border-b-[0.35rem] border-b-[var(--lt-violet2)] my-4 mx-0 pt-[0.35rem]">
+
+            <input id="op" placeholder="password" class="caret-transparent focus:outline-none w-full bg-transparent py-5 px-4 font-bold text-[1.5rem] pr-[3.25rem] tracking-wide text-[var(--vb-yellow)] placeholder:text-[var(--vb-yellow)] placeholder:leading-[30px] placeholder:uppercase placeholder:opacity-60">
+
+            <button id="cpyBtn" class="absolute top-[50%] right-[1.5rem] translate-y-[-50%]">
+
+                <span id="cpyMsg" class="absolute text-[var(--vb-yellow)] bg-[var(--vb-violet)] text-[1.25rem] top-[-60px] left-[-25px] p-[10px] rounded-2xl scale-0 origin-bottom transi duration-[250ms] ease-in-out"></span>
+
+                <img src="./copy.svg" alt="#" class="h-5 w-5">
+
+            </button>
+
+        </div>
+
+        <div id="inputDiv" class="w-full bg-[var(--dk-violet)] rounded-2xl border-b-[0.35rem] border-b-[var(--lt-violet2)] p-5">
+
+            <div class="flex justify-between items-center">
+
+                <span class="text-[var(--pl-white)] text-[1.5rem]">Password Length</span>
+
+                <span id="length" class="text-[var(--vb-yellow)] text-[1.5rem]"></span>
+
+            </div>
+
+            <div>
+
+                <input type="range" min="0" max="20" slider class="appearance-none w-full cursor-pointer bg-[var(--lt-violet)] rounded-2xl mt-[2rem] mb-[1.5rem] bg-gradient-to-b from-[var(--vb-violet)] to-[var(--vb-violet)] h-[0.75rem] bg-no-repeat focus:outline-[3px] focus:outline-[var(--vb-yellow)]">
+
+            </div>
+
+            <div>
+
+                <div class="flex items-center my-[1rem] mx-0 gap-y-0 gap-x-[1rem]"><input type="checkbox" id="u" class="appearance-none w-[20px] h-[20px] border boder-[var(--vb-cyan)] cursor-pointer relative rounded-[0.35rem] checked:bg-[var(--vb-cyan2)] checked:before:content-['✔'] checked:before:absolute checked:before:text-[var(--dk-text)] checked:before:text-[1.05rem] checked:before:font-bold checked:before:left-[50%] checked:before:top[-3.5rem] checked:before:translate-x-[-50%] checked:before:translate-y-[-0.35rem]"> <label for="u" class="text-[var(--pl-white)] text-[1.25rem] tracking-[0.75px]">Includes Uppercase lettters</label></div>
+
+                <div class="flex items-center my-[1rem] mx-0 gap-y-0 gap-x-[1rem]"><input class="appearance-none w-[20px] h-[20px] border boder-[var(--vb-cyan)] cursor-pointer relative rounded-[0.35rem] checked:bg-[var(--vb-cyan2)] checked:before:content-['✔'] checked:before:absolute checked:before:text-[var(--dk-text)] checked:before:text-[1.05rem] checked:before:font-bold checked:before:left-[50%] checked:before:top[-3.5rem] checked:before:translate-x-[-50%] checked:before:translate-y-[-0.35rem]" type="checkbox" id="l"> <label for="l" class="text-[var(--pl-white)] text-[1.25rem] tracking-[0.75px]">Includes Lowercase letters</label></div>
+
+                <div class="flex items-center my-[1rem] mx-0 gap-y-0 gap-x-[1rem]"><input class="appearance-none w-[20px] h-[20px] border boder-[var(--vb-cyan)] cursor-pointer relative rounded-[0.35rem] checked:bg-[var(--vb-cyan2)] checked:before:content-['✔'] checked:before:absolute checked:before:text-[var(--dk-text)] checked:before:text-[1.05rem] checked:before:font-bold checked:before:left-[50%] checked:before:top[-3.5rem] checked:before:translate-x-[-50%] checked:before:translate-y-[-0.35rem]" type="checkbox" id="n"> <label for="n" class="text-[var(--pl-white)] text-[1.25rem] tracking-[0.75px]">Includes Numbers</label></div>
+
+                <div class="flex items-center my-[1rem] mx-0 gap-y-0 gap-x-[1rem]"><input class="appearance-none w-[20px] h-[20px] border boder-[var(--vb-cyan)] cursor-pointer relative rounded-[0.35rem] checked:bg-[var(--vb-cyan2)] checked:before:content-['✔'] checked:before:absolute checked:before:text-[var(--dk-text)] checked:before:text-[1.05rem] checked:before:font-bold checked:before:left-[50%] checked:before:top[-3.5rem] checked:before:translate-x-[-50%] checked:before:translate-y-[-0.35rem]" type="checkbox" id="s"> <label for="s" class="text-[var(--pl-white)] text-[1.25rem] tracking-[0.75px]">Includes Symbols</label></div>
+
+            </div>
+
+            <div class="flex justify-between items-center mt-[1.75rem] mb-[2rem]">
+
+                <span class="text-[var(--pl-white)] text-[1.5rem]">Strength</span>
+
+                <div indicator class="h-[1.5rem] w-[1.5rem] rounded-full"></div>
+
+            </div>
+
+            <div>
+
+                <button id="gntBtn" class="w-full px-0 py-4 bg-[var(--vb-violet)] text-center rounded-xl border-b-[0.35rem] border-b-[var(--vb-yellow)] tracking-wide text-[var(--vb-yellow)] uppercase font-bold text-[1.25rem]">generate password</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
